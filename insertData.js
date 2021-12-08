@@ -12,7 +12,7 @@ connection.connect(function(err){
     }
     console.log('connected!');
 
-    insertsql = "INSERT INTO personnes (id,LastName,FirstName,Email) values ('1','mohammed','boumlik','huhuhu')"
+    insertsql = "INSERT INTO personnes (id,LastName,FirstName,Email) values ('2','soufian','mettaji','huhuhu')"
     // console.log(insertsql);
     connection.query(insertsql, function(err, resultat){
         if(err){
