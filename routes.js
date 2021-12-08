@@ -1,49 +1,47 @@
-const http = require('http');
-const fs = require('fs');
-// var ejs = require('ejs');
+const http = require("http");
+const ejs = require("ejs");
 
+const server = http.createServer((req, res) => {
+  //set header content type
 
-const server = http.createServer((req, res) =>{
-    //lodash
-    // const num = _.random(0, 20);
-    // console.log(num);
-    // console.log(req.url , req.method);
-    // var path = require('path');
-    res.setHeader('Content-Type', 'text-html');
-    // var filename = path.basename('/Users/Refsnes/demo_path.js');
+    res.setHeader("Content-Type", "text/html");
 
-    // console.log(filename);
-    let path = './view/pages/';
-
-    switch(req.url){
-        case '/':
-            path +='index.ejs';
-            res.statusCode='200';
-            // console.log(path);
-            break;
-        case '/about':
-            path += 'about.html';
-            res.statusCode='200';
-            break;
-        case '/about-blah':
-            res.statusCode='301';
-            res.setHeader('location', '/about')
-            res.end();
-        default :
-            path += '404.html';
-            res.statusCode='404';
-            break;
+    let path = "./view/";
+    switch (req.url) {
+        case "/":
+        path += "index.ejs";
+        res.statusCode = 200;
+        break;
+        // case "/about":
+        //     path += "about.ejs";
+        // res.statusCode = 200;
+        // break;
+        // case "/checkout":
+        // path += "checkout.ejs";
+        // res.statusCode = 200;
+        // break;
+        // case "/check-out":
+        // res.statusCode = 301;
+        // res.setHeader("Location", "/checkout");
+        // res.end();
+        // break;
+        // default:
+        // path += "404.ejs";
+        // res.statusCode = 404;
+        // break;
     }
-    
-    fs.readFile(path, (err, data)=>{
-        if(err){
+
+    ejs.renderFile(path, {}, {}, function(err, str){
+        // str => Rendered HTML string
+        if (err) {
             console.log(err);
+            res.end();
+        } else {
+            res.end(str);
         }
-        res.end(data);
-    })
-})
+    });
+});
 
-server.listen(3000, 'localhost',()=>{
-    console.log('listen to localhost port 3000');
-
-})
+server.listen(3000, "localhost", () => {
+  console.info("listening for request on port 3000");
+});
