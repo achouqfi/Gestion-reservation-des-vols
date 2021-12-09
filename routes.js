@@ -1,47 +1,47 @@
 const http = require("http");
+const url = require("url");
 const ejs = require("ejs");
+const connection = require("./view");
 
 const server = http.createServer((req, res) => {
-  //set header content type
+  let parsedURL = url.parse(req.url, true);
+  let path = parsedURL.path.replace(/^\/+|\/+$/g, "");
 
-    res.setHeader("Content-Type", "text/html");
+  if (path == "") {
+    path = "index.ejs";
+  }else if(path == "reservation"){
+    path = "reservation.ejs";
+  }
 
-    let path = "./view/";
-    switch (req.url) {
-        case "/":
-        path += "index.ejs";
-        res.statusCode = 200;
-        break;
-        // case "/about":
-        //     path += "about.ejs";
-        // res.statusCode = 200;
-        // break;
-        // case "/checkout":
-        // path += "checkout.ejs";
-        // res.statusCode = 200;
-        // break;
-        // case "/check-out":
-        // res.statusCode = 301;
-        // res.setHeader("Location", "/checkout");
-        // res.end();
-        // break;
-        // default:
-        // path += "404.ejs";
-        // res.statusCode = 404;
-        // break;
+  let file = __dirname + "/view/" + path;
+  ejs.renderFile(file, function(err, content) {
+    if (err) {
+      console.log(`File Not Found ${file}`);
+      res.writeHead(404);
+      res.end();
+    } else {
+      console.log(`Returning ${path}`);
+      res.setHeader("X-Content-Type-Options", "nosniff");
+      switch (path) {
+        case "css/main.css":
+          res.writeHead(200, { "Content-type": "text/css" });
+          break;
+        case "js/db.js":
+          res.writeHead(200, { "Content-type": "application/javascript" });
+          break;
+        case "index.ejs":
+          res.writeHead(200, { "Content-type": "text/html" });
+          break;
+        case "reservation.ejs":
+          res.writeHead(200, { "Content-type": "text/html" });
+          break;
+      }
+      res.end(content);
     }
-
-    ejs.renderFile(path, {}, {}, function(err, str){
-        // str => Rendered HTML string
-        if (err) {
-            console.log(err);
-            res.end();
-        } else {
-            res.end(str);
-        }
-    });
+  });
 });
 
 server.listen(3000, "localhost", () => {
-  console.info("listening for request on port 3000");
+  console.log("Listening on port 3000");
 });
+
