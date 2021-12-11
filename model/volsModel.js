@@ -14,9 +14,7 @@ connection.connect(function(err) {
 function findAll() {
     return new Promise((resolve, reject) => {
         connection.query("select * from vols", function(err, res){
-        // if(reject){
-        //     throw err;
-        // }
+        
             resolve(res)
         })
     })
@@ -24,5 +22,6 @@ function findAll() {
 
 
 module.exports = {
-    findAll
+    findAll,
+    // Create
 }

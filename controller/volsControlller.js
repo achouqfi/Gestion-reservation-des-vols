@@ -1,16 +1,32 @@
-const Vols = require('../model/volsModel.js')
+const Vols = require('../model/volsModel.js');
 
-async function getVols(req, res) {
+ function getVols() {
     try {
-        const vols = await Vols.findAll();
-
-        res.writeHead(200, { 'Content-Type': 'application/json' })
-        res.end(JSON.stringify(vols))
-        // console.log(products);
+        const vols = Vols.findAll();
+        //  vols.toString();
+        return vols;
     } catch (error) {
         console.log(error)
     }
 }
+
+// async function CreateVol(req, res) {
+//     try {
+//         const body = await getPostData(req)
+//         const { name, description, price } = JSON.parse(body)
+//         const product = {
+//             name,
+//             description,
+//             price
+//         }
+//         const newProduct = await Product.create(product)
+//         res.writeHead(201, { 'Content-Type': 'application/json' })
+//         return res.end(JSON.stringify(newProduct))  
+
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
 
 
 module.exports = {
