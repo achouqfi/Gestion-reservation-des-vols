@@ -1,21 +1,26 @@
 const http = require('http')
-const { getVols } = require('./controller/volsControlller.js')
+const { getVols,insertReservation } = require('./controller/volsControlller.js')
 const url = require("url");
 const ejs = require("ejs");
 const fs = require('fs');
-
+const qs = require('querystring');
 const server = http.createServer(async (req, res) => {
-    
-    // if('http://localhost:3000/api/home' && req.method === 'GET') {
-    // }
-
     let parsedURL = url.parse(req.url, true);
     let path = parsedURL.path.replace(/^\/+|\/+$/g, "");
   
     if (path == "") {
       path = "index.ejs";
+    }else if(path == "insertdata"){
+        var body = '';
+        req.on('data', function(chunk) {
+          body += chunk;
+        });
+        req.on('end', function() {
+          var post = qs.parse(body);
+          console.log(post.body);
+          insertReservation(post.body);
+        });
     }
-    
     let array =await getVols();
     // let newarray =["khh","khh","khh","khh","khh"]
     let file = __dirname + "/view/" + path;

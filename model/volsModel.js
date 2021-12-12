@@ -14,14 +14,20 @@ connection.connect(function(err) {
 function findAll() {
     return new Promise((resolve, reject) => {
         connection.query("select * from vols", function(err, res){
-        
             resolve(res)
         })
     })
 }
 
+function insertReservation(reservationID) {
+    return new Promise((resolve, reject) => {
+        connection.query(`INSERT INTO vols (reservationID, volID)VALUES ('${reservationID}','null pour I')`, function(err, res){
+            resolve(res)
+        })
+    })
+}
 
 module.exports = {
     findAll,
-    // Create
+    insertReservation
 }
