@@ -12,14 +12,14 @@ const server = http.createServer(async (req, res) => {
     if (path == "") {
       path = "index.ejs";
     }else if(path == "insertdata"){
-        var body = '';
+        var form = '';
         req.on('data', function(chunk) {
-          body += chunk;
+          form += chunk;
         });
         req.on('end', function() {
-          var post = qs.parse(body);
-          console.log(post.body);
-          insertReservation(post.body);
+          var post = qs.parse(form);
+          // console.log(post.nom,post.nombrePer,post.volID,post.email,post.numeroTel,post.passport,post.dateNaissance);
+          insertReservation(post.nom,post.nombrePer,post.volID,post.email,post.numeroTel,post.passport,post.dateNaissance);
         });
     }
     let array =await getVols();

@@ -19,9 +19,9 @@ function findAll() {
     })
 }
 
-function insertReservation(reservationID) {
+function insertReservation(nom,nombrePer,volID,email,numeroTel,passport,dateNaissance) {
     return new Promise((resolve, reject) => {
-        connection.query(`INSERT INTO reservation (PersonID, volID) VALUES (1,${reservationID})`, function(err, res){
+        connection.query(`INSERT INTO reservation (nom,email,datenaissance,Npassport,nPerson,telephone,volID) VALUES ("${nom}","${email}","${dateNaissance}","${passport}","${nombrePer}","${numeroTel}","${volID}")`, function(err, res){
             // "INSERT INTO reservation (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')"
             resolve(res);
             

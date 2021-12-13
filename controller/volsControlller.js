@@ -9,10 +9,11 @@ function getVols() {
     }
 }
 
-function insertReservation(id) {
+function insertReservation(nom,nombrePer,volID,email,numeroTel,passport,dateNaissance) {
+    console.log(nom,nombrePer,volID,email,numeroTel,passport,dateNaissance);
     try {
-        const vols = Vols.insertReservation(id);
-        console.log(id);
+        const vols = Vols.insertReservation(nom,nombrePer,volID,email,numeroTel,passport,dateNaissance);
+        // console.log(id);
         return vols;
     } catch (error) {
         console.log(error)

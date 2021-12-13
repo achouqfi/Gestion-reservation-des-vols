@@ -644,6 +644,7 @@ h1 {
 			let villeArrive = document.getElementById("inputCityA").value;
 			arrayN.forEach(element => {
 				if(element.pointarrive == villeArrive){
+					
 					document.getElementById("disponibilité").innerHTML +=`
 						<div class="row">
 							<article class="card fl-left">
@@ -677,10 +678,10 @@ h1 {
 			});
 		}
 		function reserver(){
-			// let volID= Element.getAttribute('data-type');
-
+			let idvols= document.getElementById('idvols').value;
+			// console.log(idvols);
+			// let volID=getAttribute('data-type');
 			document.getElementById('disponibilité').innerHTML=`
-			
 			<div class="tm-bg-black mb-5 ie-container-width-fix-2 mt-5">
 			<h1>Reservation </h1>
 			<div class="container ie-h-align-center-fix">
@@ -690,7 +691,7 @@ h1 {
 						<div class="tm-search-form tm-section-pad-2">
 							<div class="form-row tm-search-form-row"> 
 								<div class="form-group tm-form-element tm-form-element-2">                                            
-									<select class="form-control tm-select" id="adult">
+									<select class="form-control tm-select" name="nombrePer">
 										<option value="">Nombre des personne</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
@@ -704,30 +705,28 @@ h1 {
 								</div>
 								
 								<div class="form-group tm-form-element tm-form-element-2">                                            
-									<input type="text" class="form-control" id="nom" placeholder="nom et prenom">
+									<input type="text" class="form-control" id="nom" name="nom" placeholder="nom et prenom">
 									<i class="fa fa-2x fa-user tm-form-element-icon"></i>
 								</div>
-								
+								<input type="hidden" name="volID" value="${idvols}" >
 								<div class="form-group tm-form-element tm-form-element-2">
-									<input  type="text" class="form-control" id="email" placeholder="email">
+									<input  type="text" class="form-control" id="email" name="email" placeholder="email">
 									<i class="fa fa-2x fa-envelope tm-form-element-icon"></i>
 								</div> 
 								<div class="form-group tm-form-element tm-form-element-2">                                            
-									<input  type="text" class="form-control" id="numeroTel" placeholder="numero de telephone">
+									<input  type="text" class="form-control" id="numeroTel"  name="numeroTel" placeholder="numero de telephone">
 									<i class="fa fa-2x fa-phone tm-form-element-icon"></i>
 								</div>
-								<div class="form-group tm-form-element tm-form-element-2">                                            
-									<input  type="text" class="form-control" id="numeroTel" placeholder="numero de telephone">
-									<i class="fa fa-2x fa-phone tm-form-element-icon"></i>
+								<div class="form-group tm-form-element tm-form-element-2"> 	                                         
+									<input  type="date" class="form-control" id="numeroTel" name="dateNaissance" placeholder="date de naissance">
+									<i class="fa fa-2x fa-calendar tm-form-element-icon"></i>
 								</div>
 								<div class="form-group tm-form-element tm-form-element-2">   
-									assurance                                         
-									<input  type="radio" class="form-control" id="numeroTel" placeholder="numero de telephone">
+									<input  type="radio" class="form-control">
 								</div>
-								<input type="hidden" id="idvols" name="body">
 								<div class="form-group tm-form-element tm-form-element-2">
-									<input  type="text" class="form-control" id="Npassport" placeholder="numero de passport">
-									<i class="fa fa-2x fa-passport tm-form-element-icon"></i>
+									<input  type="text" class="form-control" id="Npassport" name="passport" placeholder="numero de passport">
+									<i class="fa fa-2x fa-globe tm-form-element-icon"></i>
 								</div> 
 								<div class="form-group tm-form-element tm-form-element-2">
 									<button type="submit" class="btn btn-primary tm-btn-search" id="reserver" >Reserver maintenant</button>
