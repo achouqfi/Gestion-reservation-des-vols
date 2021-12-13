@@ -257,7 +257,6 @@
 		padding-right: 1.5em
 	}
 
-	/* https://stackoverflow.com/questions/20163079/remove-select-arrow-on-ie */
 	select.tm-select::-ms-expand { display: none; }
 
 	.tm-select {
@@ -408,6 +407,170 @@
 			width: 100%;
 		}	
 	}
+
+	/* disponibilité  */
+
+.fl-left {
+    float: left
+}
+
+.fl-right {
+    float: right
+}
+
+h1 {
+    text-transform: uppercase;
+    font-weight: 900;
+    border-left: 10px solid #e71b00;
+    padding-left: 10px;
+    margin-bottom: 30px;
+	margin-top:3%
+}
+
+.row {
+    overflow: hidden
+}
+
+.card {
+    display: table-row;
+    width: 100%;
+    background-color: #fff;
+    color: #989898;
+    margin-bottom: 10px;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    border-radius: 4px;
+    position: relative;
+	margin-bottom: 5%;
+}
+
+.card+.card {
+    margin-left: 2%
+}
+
+.date {
+    display: table-cell;
+    width: 25%;
+    position: relative;
+    text-align: center;
+    border-right: 2px dashed #dadde6
+}
+
+.date:before,
+.date:after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-color: #DADDE6;
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    z-index: 1;
+    border-radius: 50%
+}
+
+.tm-bg-black{
+	border:2px solid orangered;
+	border-radius: 10px;
+	padding-left: 7%;
+	box-shadow: 5px 4px 5px rgb(219, 88, 88);
+}
+
+.date:after {
+    top: auto;
+    bottom: -15px
+}
+
+.date time {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%)
+}
+
+.date time span {
+    display: block
+}
+
+.date time span:first-child {
+    color: #2b2b2b;
+    font-weight: 600;
+    font-size: 100%
+}
+
+.date time span:last-child {
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: -10px
+}
+
+.card-cont {
+    display: table-cell;
+    width: 75%;
+    font-size: 85%;
+    padding: 10px 10px 30px 50px
+}
+
+.card-cont h3 {
+    color: #3C3C3C;
+    font-size: 130%
+}
+
+.row:last-child .card:last-of-type .card-cont h3 {
+    text-decoration: line-through
+}
+
+
+.card-cont .even-info p {
+    padding: 30px 50px 0 0
+}
+
+.card-cont .even-date time span {
+    display: block
+}
+
+.card-cont a {
+    display: block;
+    text-decoration: none;
+    width: 80px;
+    height: 30px;
+    background-color: #D8DDE0;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 2px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px
+}
+
+.row:last-child .card:last-child .card-cont a {
+    background-color: #eb0400
+}
+
+#form-reservation{
+	background: whitesmoke;
+}
+
+@media screen and (max-width: 860px) {
+    .card {
+        display: block;
+        float: none;
+        width: 100%;
+        margin-bottom: 10px
+    }
+    .card+.card {
+        margin-left: 0
+    }
+    .card-cont .even-date,
+    .card-cont .even-info {
+        font-size: 75%
+    }
+}
     </style>
 </head>
 <body>
@@ -452,38 +615,6 @@
                                         <button type="submit" class="btn btn-primary tm-btn-search" id="Verification" onclick="Verification()">Vérifie l'accessibilité</button>
                                     </div>
                                 </div>
-                                <div class="form-row tm-search-form-row d-none" id="result"> 
-                                    <div class="form-group tm-form-element tm-form-element-2">                                            
-                                        <select name="adult" class="form-control tm-select" id="adult">
-                                            <option value="">Adult</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                        </select>
-                                        <i class="fa fa-2x fa-user tm-form-element-icon"></i>
-                                    </div>
-                                    <div class="form-group tm-form-element tm-form-element-2">                                            
-                                        <select name="children" class="form-control tm-select" id="children">
-                                            <option value="">Children</option>
-                                            <option value="0">0</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>   
-                                        </select>
-                                        <i class="fa fa-user tm-form-element-icon tm-form-element-icon-small"></i>
-                                    </div>
-                                    <div class="form-group tm-form-element tm-form-element-2">
-                                        <select name="room" class="form-control tm-select" id="room">
-                                            <option value="">Room</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                        </select>
-                                        <i class="fa fa-2x fa-bed tm-form-element-icon"></i>
-                                    </div> 
-                                    <div class="form-group tm-form-element tm-form-element-2">
-                                        <button type="submit" class="btn btn-primary tm-btn-search">Reserver maintenant</button>
-                                    </div>
-                                  </div>
                                   <div class="form-row clearfix pl-2 pr-2 tm-fx-col-xs">
                                       <p class="tm-margin-b-0" id="">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                   </div> 
@@ -495,24 +626,68 @@
         </div>
 	</div>
 
-	<!-- <div class="tm-section tm-bg-img" id="tm-section-1"> -->
-		<div class="tm-bg-white ie-container-width-fix-2 mt-5">
+	<section class="container" id="disponibilité">
+		<h1>Vols :</h1>
+	
+		</div>
+	</section>
+	
+	<div class="tm-sectiontm-bg-img" id="form-reservation">
+		
+	</div> 
+	
+	<script>
+		let arrayN = <%- JSON.stringify(dataArray)%>;
+		console.log(arrayN);
+		function Verification(){
+			let villeDepart = document.getElementById("inputCityD").value;
+			let villeArrive = document.getElementById("inputCityA").value;
+			arrayN.forEach(element => {
+				if(element.pointarrive == villeArrive){
+					document.getElementById("disponibilité").innerHTML +=`
+						<div class="row">
+							<article class="card fl-left">
+								<section class="date">
+									<time>
+										<span>${element.prix}</span>				
+									</time>
+								</section>
+								<section class="card-cont">
+									<small>Safi Air</small>
+									<div class="even-date">
+									<i class="fa fa-calendar"></i>
+									<input type="hidden" id="idvols" data-type="${element.volID}" value="${element.volID}">
+									<time>
+									<span class="ml-3">depart à ${element.datedepart} arrivée à ${element.datedarrive} </span>
+									<span>Heure de depart à ${element.horaire}</span>
+									</time>
+									</div>
+									<div class="even-info">
+									<i class="fa fa-map-marker"></i>
+									<p>
+										ville de depart ${element.pointdepart} ville d'arrivée ${element.pointarrive}
+									</p>
+									</div>
+									<button class="btn btn-primary btn-md" onclick="reserver()" id="ticket" >tickets</button>
+								</section> 
+							</article>
+						</div>
+					`;
+				}
+			});
+		}
+		function reserver(){
+			// let volID= Element.getAttribute('data-type');
+
+			document.getElementById('disponibilité').innerHTML=`
+			
+			<div class="tm-bg-black mb-5 ie-container-width-fix-2 mt-5">
+			<h1>Reservation </h1>
 			<div class="container ie-h-align-center-fix">
 				<div class="row">
 					<form action="/insertdata" method="post">
 					<div class="col-xs-12 ml-auto mr-auto ie-container-width-fix">
 						<div class="tm-search-form tm-section-pad-2">
-							<div class="form-row tm-search-form-row">
-								<div class="form-group tm-form-element tm-form-element-100">
-									<input  type="text" class="form-control" id="prix" placeholder="prix" disabled>
-								</div>
-								<div class="form-group tm-form-element tm-form-element-50">
-									<input type="text" class="form-control" id="pointD" placeholder="point depart" disabled>
-								</div>
-								<div class="form-group tm-form-element tm-form-element-50">
-									<input type="text" class="form-control" id="pointF" placeholder="point d'arrive" disabled>
-								</div>
-							</div>
 							<div class="form-row tm-search-form-row"> 
 								<div class="form-group tm-form-element tm-form-element-2">                                            
 									<select class="form-control tm-select" id="adult">
@@ -522,18 +697,12 @@
 										<option value="3">3</option>
 										<option value="4">4</option>
 										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
 									</select>
 									<i class="fa fa-2x fa-user tm-form-element-icon"></i>
 								</div>
-								<div class="form-group tm-form-element tm-form-element-2">                                            
-									<input  type="text" class="form-control" id="dataD" placeholder="date depart" disabled>
-									<i class="fa fa-2x fa-calendar tm-form-element-icon"></i>
-								</div>
 								
-								<div class="form-group tm-form-element tm-form-element-2">
-									<input  type="text" class="form-control" id="dateA" placeholder="date d'arrivée" disabled>
-									<i class="fa fa-2x fa-calendar tm-form-element-icon"></i>
-								</div> 
 								<div class="form-group tm-form-element tm-form-element-2">                                            
 									<input type="text" class="form-control" id="nom" placeholder="nom et prenom">
 									<i class="fa fa-2x fa-user tm-form-element-icon"></i>
@@ -547,14 +716,22 @@
 									<input  type="text" class="form-control" id="numeroTel" placeholder="numero de telephone">
 									<i class="fa fa-2x fa-phone tm-form-element-icon"></i>
 								</div>
-									<input type="hidden" id="idvols" name="body">
-									<div class="form-group tm-form-element tm-form-element-2">
-										<input  type="text" class="form-control" id="Npassport" placeholder="numero de passport">
-										<i class="fa fa-2x fa-passport tm-form-element-icon"></i>
-									</div> 
-									<div class="form-group tm-form-element tm-form-element-2">
-										<button type="submit" class="btn btn-primary tm-btn-search" id="reserver" >Reserver maintenant</button>
-									</div>
+								<div class="form-group tm-form-element tm-form-element-2">                                            
+									<input  type="text" class="form-control" id="numeroTel" placeholder="numero de telephone">
+									<i class="fa fa-2x fa-phone tm-form-element-icon"></i>
+								</div>
+								<div class="form-group tm-form-element tm-form-element-2">   
+									assurance                                         
+									<input  type="radio" class="form-control" id="numeroTel" placeholder="numero de telephone">
+								</div>
+								<input type="hidden" id="idvols" name="body">
+								<div class="form-group tm-form-element tm-form-element-2">
+									<input  type="text" class="form-control" id="Npassport" placeholder="numero de passport">
+									<i class="fa fa-2x fa-passport tm-form-element-icon"></i>
+								</div> 
+								<div class="form-group tm-form-element tm-form-element-2">
+									<button type="submit" class="btn btn-primary tm-btn-search" id="reserver" >Reserver maintenant</button>
+								</div>
 							</div>
 								<div class="form-row clearfix pl-2 pr-2 tm-fx-col-xs">
 									<p class="tm-margin-b-0" id="horaie"></p>
@@ -562,31 +739,10 @@
 							</div>
 						</form>
 					</div>                        
-				</div>      
-			</div>
-	
-	<script>
-		let arrayN = <%- JSON.stringify(dataArray)%>;
-		console.log(arrayN);
-		function Verification(){
-			let villeDepart = document.getElementById("inputCityD").value;
-			let villeArrive = document.getElementById("inputCityA").value;		
-			arrayN.forEach(element => {
-				if(element.pointarrive == villeArrive){
-					document.getElementById("prix").value = element.prix;
-					document.getElementById("dataD").value = element.datedepart;
-					document.getElementById("dateA").value = element.datedarrive;
-					document.getElementById("pointD").value = element.pointdepart;
-					document.getElementById("pointF").value = element.pointarrive;
-					document.getElementById("idvols").value = element.volID;
-					document.getElementById("horaie").innerHTML = `date de depart est à ${element.horaire}`;
-				}
-			});
-		}
-		document.getElementById("reserver").addEventListener("click", function(){
-			let volID= document.getElementById("idvols").value;
-			console.log(volID);
-		});
+				</div>  
+			    
+			`
+		};
 		
 	</script>
 </body>

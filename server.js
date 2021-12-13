@@ -4,6 +4,7 @@ const url = require("url");
 const ejs = require("ejs");
 const fs = require('fs');
 const qs = require('querystring');
+
 const server = http.createServer(async (req, res) => {
     let parsedURL = url.parse(req.url, true);
     let path = parsedURL.path.replace(/^\/+|\/+$/g, "");

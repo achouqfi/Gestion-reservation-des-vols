@@ -21,8 +21,10 @@ function findAll() {
 
 function insertReservation(reservationID) {
     return new Promise((resolve, reject) => {
-        connection.query(`INSERT INTO vols (reservationID, volID)VALUES ('${reservationID}','null pour I')`, function(err, res){
-            resolve(res)
+        connection.query(`INSERT INTO reservation (PersonID, volID) VALUES (1,${reservationID})`, function(err, res){
+            // "INSERT INTO reservation (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')"
+            resolve(res);
+            
         })
     })
 }

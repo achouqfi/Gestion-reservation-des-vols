@@ -9,10 +9,10 @@ function getVols() {
     }
 }
 
- function insertReservation(id) {
+function insertReservation(id) {
     try {
         const vols = Vols.insertReservation(id);
-        console.log(vols);
+        console.log(id);
         return vols;
     } catch (error) {
         console.log(error)
