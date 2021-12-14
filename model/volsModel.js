@@ -19,12 +19,16 @@ function findAll() {
     })
 }
 
-function insertReservation(nom,nombrePer,volID,email,numeroTel,passport,dateNaissance) {
+function insertReservation(nom,nombrePer,volID,email,numeroTel,passport,dateNaissance,assurance,repas) {
+    // console.log(nom,nombrePer,volID,email,numeroTel,passport,dateNaissance,assurance,repas);
+    
     return new Promise((resolve, reject) => {
-        connection.query(`INSERT INTO reservation (nom,email,datenaissance,Npassport,nPerson,telephone,volID) VALUES ("${nom}","${email}","${dateNaissance}","${passport}","${nombrePer}","${numeroTel}","${volID}")`, function(err, res){
-            // "INSERT INTO reservation (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')"
-            resolve(res);
-            
+        connection.query(`INSERT INTO reservation (nom,email,datenaissance,Npassport,nPerson,telephone,volID,repas,assurance) VALUES ("${nom}","${email}","${dateNaissance}","${passport}","${nombrePer}","${numeroTel}","${volID}","${repas}","${assurance}")`, function(err, res){
+            resolve(res)
+        })
+
+        connection.query(`UPDATE vols SET capacite = capacite - ${nombrePer}  WHERE volID = ${volID};`, function(err, res){
+            resolve(res)
         })
     })
 }

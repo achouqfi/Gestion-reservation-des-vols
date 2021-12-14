@@ -269,6 +269,8 @@
 		padding: 0.75rem 0.75rem 0.75rem 45px;
 	}
 
+	
+
 	.tm-search-form .tm-form-element { width: 33.3333%; }
 	.tm-search-form .tm-form-element-2 { width: 25%; }
 	.tm-search-form-row { width: 900px; }
@@ -638,13 +640,12 @@ h1 {
 	
 	<script>
 		let arrayN = <%- JSON.stringify(dataArray)%>;
-		console.log(arrayN);
+		// console.log(arrayN);
 		function Verification(){
 			let villeDepart = document.getElementById("inputCityD").value;
 			let villeArrive = document.getElementById("inputCityA").value;
 			arrayN.forEach(element => {
 				if(element.pointarrive == villeArrive){
-					
 					document.getElementById("disponibilité").innerHTML +=`
 						<div class="row">
 							<article class="card fl-left">
@@ -661,6 +662,7 @@ h1 {
 									<time>
 									<span class="ml-3">depart à ${element.datedepart} arrivée à ${element.datedarrive} </span>
 									<span>Heure de depart à ${element.horaire}</span>
+									<input type="hidden" id="capacite" value="${element.capacite}" >
 									</time>
 									</div>
 									<div class="even-info">
@@ -679,8 +681,8 @@ h1 {
 		}
 		function reserver(){
 			let idvols= document.getElementById('idvols').value;
-			// console.log(idvols);
-			// let volID=getAttribute('data-type');
+			let capacite = document.getElementById("capacite").value;
+			// console.log(capacite);
 			document.getElementById('disponibilité').innerHTML=`
 			<div class="tm-bg-black mb-5 ie-container-width-fix-2 mt-5">
 			<h1>Reservation </h1>
@@ -689,9 +691,11 @@ h1 {
 					<form action="/insertdata" method="post">
 					<div class="col-xs-12 ml-auto mr-auto ie-container-width-fix">
 						<div class="tm-search-form tm-section-pad-2">
+							<p class="tm-margin-b-0" id="ncapacite"></p>
 							<div class="form-row tm-search-form-row"> 
+								<input type="hidden" id="capacite" value="${capacite}" >
 								<div class="form-group tm-form-element tm-form-element-2">                                            
-									<select class="form-control tm-select" name="nombrePer">
+									<select class="form-control tm-select" id="nombrePer" onchange="myFunction()" name="nombrePer">
 										<option value="">Nombre des personne</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
@@ -721,13 +725,22 @@ h1 {
 									<input  type="date" class="form-control" id="numeroTel" name="dateNaissance" placeholder="date de naissance">
 									<i class="fa fa-2x fa-calendar tm-form-element-icon"></i>
 								</div>
-								<div class="form-group tm-form-element tm-form-element-2">   
-									<input  type="radio" class="form-control">
-								</div>
 								<div class="form-group tm-form-element tm-form-element-2">
 									<input  type="text" class="form-control" id="Npassport" name="passport" placeholder="numero de passport">
 									<i class="fa fa-2x fa-globe tm-form-element-icon"></i>
+								</div>
+								<div class="form-group tm-form-element tm-form-element-2 ">  
+									<div class="form-control d-flex">
+										Assurance
+										<input  type="checkbox" name="assurance" class="form-control mt-1">
+									</div>
 								</div> 
+								<div class="form-group tm-form-element tm-form-element-2 ">  
+									<div class="form-control d-flex">
+										repas
+										<input type="checkbox" name="repas" class="form-control mt-1">
+									</div>
+								</div>
 								<div class="form-group tm-form-element tm-form-element-2">
 									<button type="submit" class="btn btn-primary tm-btn-search" id="reserver" >Reserver maintenant</button>
 								</div>
@@ -739,9 +752,24 @@ h1 {
 						</form>
 					</div>                        
 				</div>  
-			    
 			`
 		};
+
+		function myFunction() {
+			var select = document.getElementById("nombrePer").value;
+			var capacite = document.getElementById("capacite").value;
+			console.log(select,capacite);
+
+			if(capacite < select ){
+				document.getElementById('ncapacite').style.color='red';
+				document.getElementById('ncapacite').innerHTML="les places sont indisponibles";
+				document.getElementById('reserver').disabled ="disabled"
+			}else{
+				document.getElementById('ncapacite').innerHTML="les places sont disponibles";
+				document.getElementById('ncapacite').style.color='black';
+				document.getElementById('reserver').disabled ="";
+			}
+		}
 		
 	</script>
 </body>

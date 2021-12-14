@@ -9,11 +9,15 @@ function getVols() {
     }
 }
 
-function insertReservation(nom,nombrePer,volID,email,numeroTel,passport,dateNaissance) {
-    console.log(nom,nombrePer,volID,email,numeroTel,passport,dateNaissance);
+function insertReservation(nom,nombrePer,volID,email,numeroTel,passport,dateNaissance,assurance,repas) {
+    if(assurance == undefined){
+        assurance = "off"
+    } 
+    if (repas == undefined){
+        repas = "off"
+    }
     try {
-        const vols = Vols.insertReservation(nom,nombrePer,volID,email,numeroTel,passport,dateNaissance);
-        // console.log(id);
+        const vols = Vols.insertReservation(nom,nombrePer,volID,email,numeroTel,passport,dateNaissance,assurance,repas);
         return vols;
     } catch (error) {
         console.log(error)

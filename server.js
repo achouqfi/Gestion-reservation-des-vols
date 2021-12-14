@@ -4,6 +4,7 @@ const url = require("url");
 const ejs = require("ejs");
 const fs = require('fs');
 const qs = require('querystring');
+const nodemailer = require('nodemailer');
 
 const server = http.createServer(async (req, res) => {
     let parsedURL = url.parse(req.url, true);
@@ -18,12 +19,13 @@ const server = http.createServer(async (req, res) => {
         });
         req.on('end', function() {
           var post = qs.parse(form);
-          // console.log(post.nom,post.nombrePer,post.volID,post.email,post.numeroTel,post.passport,post.dateNaissance);
-          insertReservation(post.nom,post.nombrePer,post.volID,post.email,post.numeroTel,post.passport,post.dateNaissance);
+          insertReservation(post.nom,post.nombrePer,post.volID,post.email,post.numeroTel,post.passport,post.dateNaissance,post.repas,post.assurance);
         });
+        path = "paiment.ejs";
+    }else if(path == "payment"){
+      path = "paiment.ejs";
     }
     let array =await getVols();
-    // let newarray =["khh","khh","khh","khh","khh"]
     let file = __dirname + "/view/" + path;
     fs.readFile(file,'utf-8',function(err, content){
         if (err){
@@ -32,16 +34,6 @@ const server = http.createServer(async (req, res) => {
             res.end();
         } else {
             res.setHeader("Content-Type", "text/html");
-            // switch (path){
-            // case "css/main.css":
-            //     res.writeHead(200, { "Content-type": "text/css" });
-            //     break;
-            // case "js/main.js":
-            //     res.writeHead(200, { "Content-type": "application/javascript" });
-            //     break;
-            // case "index.ejs":
-            //     res.writeHead(200, { "Content-type": "text/html" });
-            // }
             let dataRender = ejs.render(content , {dataArray: array});
             res.end(dataRender);
         }
