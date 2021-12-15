@@ -10,9 +10,6 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> 
     <style>
-        .container-fluid {
-    background-color: #b9080844
-}
 
 .heading {
     font-size: 40px;
@@ -33,19 +30,16 @@
 }
 
 .form-card input,
-.form-card textarea {
+.form-card  {
     padding: 10px 15px 5px 15px;
     border: none;
-    border: 1px solid rgb(248, 248, 248);
     border-radius: 6px;
     margin-bottom: 25px;
     margin-top: 2px;
     width: 100%;
     box-sizing: border-box;
     font-family: arial;
-    color: #2C3E50;
     font-size: 14px;
-    letter-spacing: 1px
 }
 
 .form-card input:focus,
@@ -114,7 +108,7 @@ img {
     display: inline-block;
     border-radius: 6px;
     box-sizing: border-box;
-    border: 2px solid lightgrey;
+    border: 2px solid rgb(255, 255, 255);
     cursor: pointer;
     margin: 12px 25px 12px 0px
 }
@@ -138,23 +132,9 @@ img {
                         </div>
                     </div>
                     <form   class="form-card mt-3">
-                        <div class="row justify-content-center mb-4 radio-group">
-                            <div class="col-sm-3 col-5">
-                                <div class='radio mx-auto' data-value="dk"> <img class="fit-image" src="https://i.imgur.com/5TqiRQV.jpg" width="105px" height="55px"> </div>
-                            </div>
-                            <div class="col-sm-3 col-5">
-                                <div class='radio mx-auto' data-value="visa"> <img class="fit-image" src="https://i.imgur.com/OdxcctP.jpg" width="105px" height="55px"> </div>
-                            </div>
-                            <div class="col-sm-3 col-5">
-                                <div class='radio mx-auto' data-value="master"> <img class="fit-image" src="https://i.imgur.com/WIAP9Ku.jpg" width="105px" height="55px"> </div>
-                            </div>
-                            <div class="col-sm-3 col-5">
-                                <div class='radio mx-auto' data-value="paypal"> <img class="fit-image" src="https://i.imgur.com/cMk1MtK.jpg" width="105px" height="55px"> </div>
-                            </div> <br>
-                        </div>
                         <div class="row justify-content-center ">
                             <div class="col-12">
-                                <div class="input-group"> <input type="text" name="Name" placeholder="John Doe"> <label>Name</label> </div>
+                                <div class="input-group"> <input type="text" name="Name" placeholder="Ayoub "> <label>Name</label> </div>
                             </div>
                         </div>
                         <div class="row justify-content-center">
@@ -169,15 +149,15 @@ img {
                                         <div class="input-group"> <input type="text" id="exp" name="expdate" placeholder="MM/YY" minlength="5" maxlength="5"> <label>Expiry Date</label> </div>
                                     </div>
                                     <div class="col-6">
-                                        <div class="input-group"> <input type="password" name="cvv" placeholder="&#9679;&#9679;&#9679;" minlength="3" maxlength="3"> <label>CVV</label> </div>
+                                        <div class="input-group"> <input type="password" placeholder="&#9679;&#9679;&#9679;" minlength="3" maxlength="3"> <label>CVV</label> </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-md-12">
-                                <a href="/reservation">get data</a>
-                                 <input type="submit" value="Pay 100 EUR" class="btn btn-pay placeicon"> </div>
+                                <a href="/reservation"><input type="submit" value="Confirmer votre paiment" class="btn btn-pay placeicon"> </a>
+                            </div>
                         </div>
                     </form>
                 </div>
