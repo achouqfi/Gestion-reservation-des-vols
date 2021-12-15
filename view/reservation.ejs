@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        }
+
+.box{
+  position: absolute;
+  top: 30%;
+  left: 30%;
+}
+
+.ticket{
+  width: 600px;
+  height: 250px;
+  background: #f03535;
+  border-radius: 9px;
+}
+
+
+
+.ticket:after{
+  content: '';
+  position: absolute;
+  right: 200px;
+  top: 0px;
+  width: 2px;
+  height: 250px;
+}
+
+.ticket:before{
+  content: '';
+  position: absolute;
+  z-index: 5;
+  right: 199px;
+  top: 0px;
+  width: 1px;
+  height: 250px;
+ 
+}
+
+.content{
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  height: 170px;
+  background: #eee;
+}
+
+.airline{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+}
+
+.boarding{
+  position: absolute;
+  top: 10px;
+  right: 220px;
+  font-family: Arial;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.jfk{
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-family: Arial;
+  font-size: 38px;
+  color: #222;
+}
+
+.sfo{
+  position: absolute;
+  top: 10px;
+  left: 180px;
+  font-family: Arial;
+  font-size: 38px;
+  color: #222;
+}
+
+.plane{
+  position: absolute;
+  left: 105px;
+  top: 0px;
+}
+
+.sub-content{
+  background: #e5e5e5;
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  top: 70px;
+}
+
+.watermark{
+  position: absolute;
+  left: 5px;
+  top: -10px;
+  font-family: Arial;
+  font-size: 110px;
+  font-weight: bold;
+  color: rgba(255,255,255,0.2);
+}
+
+.name{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: Arial Narrow, Arial;
+  font-weight: bold;
+  font-size: 14px;
+  color: #999;
+}
+
+.name span{
+  color: #555;
+  font-size: 17px;
+}
+
+.flight{
+  position: absolute;
+  top: 10px;
+  left: 180px;
+  font-family: Arial Narrow, Arial;
+  font-weight: bold;
+  font-size: 14px;
+  color: rgb(0, 0, 0);
+}
+
+.flight span{
+  color: rgb(0, 0, 0);
+  font-size: 17px;
+}
+
+.gate{
+  position: absolute;
+  top: 10px;
+  left: 280px;
+  font-family: Arial Narrow, Arial;
+  font-weight: bold;
+  font-size: 14px;
+  color: rgb(0, 0, 0);
+}
+
+.gate span{
+  color: rgb(0, 0, 0);
+  font-size: 17px;
+}
+
+.seat{
+  position: absolute;
+  top: 10px;
+  left: 350px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #999;
+}
+
+.seat span{
+  color: rgb(0, 0, 0);
+  font-size: 17px;
+}
+
+.boardingtime{
+  position: absolute;
+  top: 60px;
+  left: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  color: rgb(0, 0, 0);
+}
+
+.boardingtime span{
+  color: rgb(211, 0, 0);
+  font-size: 17px;
+}
+
+.slip{
+  left: 455px;
+}
+
+.nameslip{
+  top: 60px;
+  left: 410px;
+}
+
+.flightslip{
+  left: 410px;
+}
+
+.seatslip{
+  left: 540px;
+}
+
+.jfkslip{
+  font-size: 30px;
+  top: 20px;
+  left: 410px;
+}
+
+.sfoslip{
+  font-size: 30px;
+  top: 20px;
+  left: 530px;
+}
+
+.planeslip{
+  top: 10px;
+  left: 475px;
+}
+
+.airlineslip{
+  left: 455px;
+}
+
+    </style>
+</head>
+<body>
+    <div id="container">
+
+    </div>
+
+    <script>
+        let arrayN = <%- JSON.stringify(dataRes) %>;
+		console.log(arrayN);
+        arrayN.forEach(element => {
+            console.log(element.nom);
+            document.getElementById("container").innerHTML=`
+                <div class="box">
+                    <div class="ticket">
+                        <span class="airline">le ${element.datedepart}</span>
+                        <span class="airline airlineslip">PRIX : ${element.prix}</span>
+                        <div class="content">
+                        <span class="jfk">Safi Air</span>
+                        <div class="sub-content">
+                            <span class="name">nom<br><span>${element.nom}</span></span>
+                            <span class="flight">N° passport<br><span>${element.Npassport}</span></span>
+                            <span class="gate">Téléphone<br><span>${element.telephone}</span></span>
+                            <span class="seat">Nombre des personnes<br><span>${element.Nperson}</span></span>
+                            <span class="boardingtime">Horaire<br><span>${element.horaire}</span></span>
+                                
+                            <span class="seat seatslip">repas<br><span>${element.repas}</span></span>
+                            <span class="name nameslip">Escale :<br><span>${element.escale}</span></span>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+    </script>
+</body>
+</html>

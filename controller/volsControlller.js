@@ -9,6 +9,15 @@ function getVols() {
     }
 }
 
+function getReservation() {
+    try {
+        const Reservation = Vols.findReservation();
+        return Reservation;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 function insertReservation(nom,nombrePer,volID,email,numeroTel,passport,dateNaissance,assurance,repas) {
     if(assurance == undefined){
         assurance = "off"
@@ -26,5 +35,6 @@ function insertReservation(nom,nombrePer,volID,email,numeroTel,passport,dateNais
 
 module.exports = {
     getVols,
-    insertReservation
+    insertReservation,
+    getReservation
 }

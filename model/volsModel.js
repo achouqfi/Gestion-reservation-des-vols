@@ -16,6 +16,15 @@ function findAll() {
         connection.query("select * from vols", function(err, res){
             resolve(res)
         })
+       
+    })
+}
+
+function findReservation() {
+    return new Promise((resolve, reject) => {
+        connection.query("select nom,email,Npassport,assurance,repas,telephone,Nperson,datenaissance,vols.pointdepart,vols.pointarrive,vols.horaire,vols.datedepart,vols.datedarrive,vols.prix,vols.escale from vols,reservation where vols.volID = reservation.volID and reservation.reservationID=(SELECT  MAX(reservationID) FROM reservation)", function(err, res){
+            resolve(res)
+        })
     })
 }
 
@@ -35,5 +44,6 @@ function insertReservation(nom,nombrePer,volID,email,numeroTel,passport,dateNais
 
 module.exports = {
     findAll,
-    insertReservation
+    insertReservation,
+    findReservation
 }
