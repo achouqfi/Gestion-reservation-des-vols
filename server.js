@@ -1,10 +1,9 @@
 const http = require('http')
-const { getVols,insertReservation, getReservation } = require('./controller/volsControlller.js')
+const { getVols,insertReservation, getReservation, mailler } = require('./controller/volsControlller.js')
 const url = require("url");
 const ejs = require("ejs");
 const fs = require('fs');
 const qs = require('querystring');
-const nodemailer = require('nodemailer');
 
 
 
@@ -12,6 +11,7 @@ const server = http.createServer(async (req, res) => {
     let parsedURL = url.parse(req.url, true);
     let path = parsedURL.path.replace(/^\/+|\/+$/g, "");
     let arrayRes =await getReservation();
+    let arrayreservation = JSON.stringify(arrayRes);
 
     if (path == "") {
       path = "index.ejs";
@@ -29,28 +29,9 @@ const server = http.createServer(async (req, res) => {
     }else if(path == "payment"){
       path = "paiment.ejs";
     }else if (path == "reservation"){
-      var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: 'testcoding975@gmail.com',
-          pass: 'testCoding1998'
-        }
-      });
-
-      var mailOptions = {
-        from: 'testcoding975@gmail.com',
-        to: 'a.chouqfi@gmail.com',
-        subject: 'Sending Email using Node.js',
-        text: 'That was easy!'
-      };
-      
-      transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' +mailOptions );
-        }
-      });
+      let html =  await ejs.render(fs.readFileSync(__dirname + "/view/reservation.ejs",'utf-8'),{dataRes: arrayreservation})
+      // console.log(html);
+      await mailler(html, 'a.chouqfi@gmail.com')
       path = "reservation.ejs";
     }
 

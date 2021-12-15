@@ -1,4 +1,5 @@
 const Vols = require('../model/volsModel.js');
+const nodemailer = require('nodemailer');
 
 function getVols() {
     try {
@@ -33,8 +34,36 @@ function insertReservation(nom,nombrePer,volID,email,numeroTel,passport,dateNais
     }
 }
 
+
+function mailler(html, email) {
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'testcoding975@gmail.com',
+          pass: 'testCoding1998'
+        }
+      });
+
+      var mailOptions = {
+        from: 'testcoding975@gmail.com',
+        to: email,
+        subject: 'reservation de vols',
+        text: 'Bonjour! voila votre ticket',
+        html:html
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' +mailOptions );
+        }
+      });
+}
+
 module.exports = {
     getVols,
     insertReservation,
-    getReservation
+    getReservation,
+    mailler
 }

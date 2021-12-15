@@ -231,36 +231,31 @@
 </head>
 <body>
     <div id="container">
-
+        <div class="box">
+            <div class="ticket">
+                <% for(let i=0; i<  dataRes.length ; i++){ %>
+                    <span class="airline"><%= dataRes[i].datedepart %></span>
+                    <span class="airline airlineslip">PRIX : <%=dataRes[i].prix %></span>
+                    <div class="content">
+                    <span class="jfk">Safi Air</span>
+                    <div class="sub-content">
+                        <span class="name">nom<br><span><%= dataRes[i].nom %></span></span>
+                        <span class="flight">N° passport<br><span><%= dataRes[i].Npassport %></span></span>
+                        <span class="gate">Téléphone<br><span><%= dataRes[i].telephone %></span></span>
+                        <span class="seat">Nombre des personnes<br><span><%= dataRes[i].Nperson %></span></span>
+                        <span class="boardingtime">Horaire<br><span><%= dataRes[i].horaire %></span></span>
+                            
+                        <span class="seat seatslip">repas<br><span><%=dataRes[i].repas %></span></span>
+                        <span class="name nameslip">Escale :<br><span><%=dataRes[i].escale %></span></span>
+                    </div>
+                    </div>
+                <% }; %>
+            </div>
+        </div>
     </div>
 
     <script>
-        let arrayN = <%- JSON.stringify(dataRes) %>;
-		console.log(arrayN);
-        arrayN.forEach(element => {
-            console.log(element.nom);
-            document.getElementById("container").innerHTML=`
-                <div class="box">
-                    <div class="ticket">
-                        <span class="airline">le ${element.datedepart}</span>
-                        <span class="airline airlineslip">PRIX : ${element.prix}</span>
-                        <div class="content">
-                        <span class="jfk">Safi Air</span>
-                        <div class="sub-content">
-                            <span class="name">nom<br><span>${element.nom}</span></span>
-                            <span class="flight">N° passport<br><span>${element.Npassport}</span></span>
-                            <span class="gate">Téléphone<br><span>${element.telephone}</span></span>
-                            <span class="seat">Nombre des personnes<br><span>${element.Nperson}</span></span>
-                            <span class="boardingtime">Horaire<br><span>${element.horaire}</span></span>
-                                
-                            <span class="seat seatslip">repas<br><span>${element.repas}</span></span>
-                            <span class="name nameslip">Escale :<br><span>${element.escale}</span></span>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            `
-        })
+      
     </script>
 </body>
 </html>
