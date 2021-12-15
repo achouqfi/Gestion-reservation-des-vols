@@ -651,7 +651,8 @@ h1 {
 							<article class="card fl-left">
 								<section class="date">
 									<time>
-										<span>${element.prix}</span>				
+										<span>${element.prix}</span>
+										<p>escale : ${element.escale}</p>
 									</time>
 								</section>
 								<section class="card-cont">
@@ -695,16 +696,8 @@ h1 {
 							<div class="form-row tm-search-form-row"> 
 								<input type="hidden" id="capacite" value="${capacite}" >
 								<div class="form-group tm-form-element tm-form-element-2">                                            
-									<select class="form-control tm-select" id="nombrePer" onchange="myFunction()" name="nombrePer">
-										<option value="">Nombre des personne</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-										<option value="6">6</option>
-										<option value="7">7</option>
-									</select>
+									<input class="form-control tm-select" type="number" max=20 min=1 id="nombrePer" onchange="myFunction()" name="nombrePer">
+									
 									<i class="fa fa-2x fa-user tm-form-element-icon"></i>
 								</div>
 								
